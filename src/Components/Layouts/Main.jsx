@@ -10,6 +10,8 @@ import {
     Route,
   } from "react-router-dom";
 import AllPost from '../DynamicPages/AllPost';
+import Login from '../DynamicPages/Login';
+import Registration from '../DynamicPages/Registration';
 
 const Main = () => {
   return (
@@ -17,11 +19,14 @@ const Main = () => {
    
    <BrowserRouter>
    <NavBar />
+  
     <Routes>
       <Route path="/" element={<HomePage  />}/>
       <Route path="lostitem" element={<SubmitLostItem/>} />
     <Route path="founditem" element={<SubmitFoundItem />} />
+    <Route path="login" element={<Login/>} />
     <Route path="allpost" element={<AllPost />}/>
+    <Route path="reg" element={ <Registration />}/>
       
     </Routes>
   </BrowserRouter>,

@@ -1,15 +1,52 @@
-import React from "react";
+import React,{useState} from "react";
 import { Link } from "react-router-dom";
-
+import axios from 'axios';
 const Registration = () => {
+
+  const [data,setData]=useState({
+    username:"",
+    contact:"",
+    password:"",
+    image:""
+  })
+  const OnChangeHandler=(e)=>{
+    const {name,value}=e.target
+    setData({...data,[name]:value})
+  }
+  const handleOnSubmit=async(e)=>{
+    e.preventDefault()
+    console.log(data)
+    try {
+      // make axios post request
+      await axios({
+        method: "post",
+        url: "https://lostandfounds.herokuapp.com/api/user",
+        data: data,
+        headers: {
+          'Content-Type': 'application/json'
+          
+      }
+      }).then((result)=>{
+        console.log(result.data)
+      });
+      console.log("Logged In")
+      
+    } catch(error) {
+      console.log(error)
+    }
+  }
   return (
     <>
       <main className="mx-auto flex min-h-screen w-full items-center justify-center bg-gray-900 text-white">
+        <form>
         <section className="flex w-[30rem] flex-col space-y-10">
           <div className="text-center text-4xl font-medium">Register</div>
 
           <div className="w-full transform border-b-2 bg-transparent text-lg duration-300 focus-within:border-indigo-500">
             <input
+              name="username"
+              onChange={OnChangeHandler}
+              value={data.name}
               type="text"
               placeholder="Username"
               className="w-full border-none bg-transparent outline-none placeholder:italic focus:outline-none"
@@ -17,14 +54,21 @@ const Registration = () => {
           </div>
           <div className="w-full transform border-b-2 bg-transparent text-lg duration-300 focus-within:border-indigo-500">
             <input
+               name="contact"
+               onChange={OnChangeHandler}
+               value={data.contact}
               type="text"
-              placeholder="Email"
+              placeholder="Email or WeChat"
               className="w-full border-none bg-transparent outline-none placeholder:italic focus:outline-none"
             />
           </div>
           <div className="w-full transform border-b-2 bg-transparent text-lg duration-300 focus-within:border-indigo-500">
             <input
-              type="text"
+               name="password"
+               onChange={OnChangeHandler}
+               value={data.password}
+               autoComplete="current-password"
+              type="password"
               placeholder="Password"
               className="w-full border-none bg-transparent outline-none placeholder:italic focus:outline-none"
             />
@@ -32,13 +76,19 @@ const Registration = () => {
 
           <div className="w-full transform border-b-2 bg-transparent text-lg duration-300 focus-within:border-indigo-500">
             <input
+               name="image"
+               onChange={OnChangeHandler}
+               value={data.image}
               type="Password"
+              autoComplete="current-password"
               placeholder="Confirm Password"
               className="w-full border-none bg-transparent outline-none placeholder:italic focus:outline-none"
             />
           </div>
 
-          <button className="transform rounded-sm bg-gray-600 py-2 font-bold duration-300 hover:bg-indigo-400">
+          <button
+          onClick={handleOnSubmit}
+           className="transform rounded-sm bg-gray-600 py-2 font-bold duration-300 hover:bg-indigo-400">
             Register
           </button>
 
@@ -51,6 +101,7 @@ const Registration = () => {
             </Link>
           </p>
         </section>
+        </form>
       </main>
     </>
   );

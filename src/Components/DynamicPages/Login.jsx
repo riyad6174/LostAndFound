@@ -1,8 +1,9 @@
 import React,{useState} from 'react'
-import {Link} from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify'
+import {Link,useNavigate} from "react-router-dom";
 import axios from 'axios';
 const Login = () => {
-
+const navigate=useNavigate()
 const [data,setData]=useState({
   username:"",
   password:""
@@ -16,12 +17,12 @@ console.log(name,value)
 
  const handleOnClick=async(e)=>{
    e.preventDefault()
-   console.log(data)
+   
    try {
     // make axios post request
     await axios({
       method: "post",
-      url: " https://lostandfounds.herokuapp.com/api/user",
+      url: " http://localhost:4000/api/login",
       data: data,
       headers: {
         'Content-Type': 'application/json'
@@ -29,11 +30,17 @@ console.log(name,value)
     }
     }).then((result)=>{
       console.log(result.data)
+      toast("loggedIn")
+  
+      if(result.data.key){
+        localStorage.setItem("key",result.data.key)
+      }
+
     });
-    console.log("Logged In")
+    navigate('/')
     
   } catch(error) {
-    console.log(error)
+    toast("error")
   }
  }
 
@@ -86,7 +93,7 @@ console.log(name,value)
 
     <p className="text-center text-lg">
       No account?
-      <Link
+      <Link 
         to="/reg"
         className="font-medium text-indigo-500 underline-offset-4 hover:underline"
         >Create One</Link>
@@ -95,6 +102,7 @@ console.log(name,value)
   </section>
   </form>
 </main>
+<ToastContainer />
     </>
   )
 }

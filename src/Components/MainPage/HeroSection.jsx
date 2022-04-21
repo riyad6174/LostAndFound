@@ -1,4 +1,7 @@
 import React from 'react'
+import lostImage from './images/lost.jpg'
+import foundImage from './images/kitten.jpg'
+import postImage from './images/happy.jpg'
 
 const HeroSectio = () => {
   return (
@@ -8,16 +11,22 @@ const HeroSectio = () => {
       <h1 className="text-3xl font-bold text-gray-600 mb-10">Some more feature will be announce here</h1>
       <div className="grid sm:grid-cols-3 gap-4 grid-cols-2">
         <div>
-          <div className="bg-gray-300 h-44"></div>
+          <div className="bg-gray-300 h-44 overflow-hidden" >
+            <img src={lostImage} alt="lostImage" />
+          </div>
           <h3 className="text-lg font-semibold text-gray-500 mt-2">lallala <span className="text-gray-700">Helsinki</span></h3>
         </div>
         <div>
-          <div className="bg-gray-300 h-44"></div>
+          <div className="bg-gray-300 h-44 overflow-hidden" >
+          <img src={foundImage} alt="foundImage" />
+          </div>
           <h3 className="text-lg font-semibold text-gray-500 mt-2">lelele<span className="text-gray-700">Rovaniemi</span></h3>
         </div>
         <div>
-          <div className="bg-gray-300 h-44"></div>
-          <h3 className="text-lg font-semibold text-gray-500 mt-2">lululu <span className="text-gray-700">Tokyo</span></h3>
+          <div className="bg-gray-300 h-44 overflow-hidden">
+          <img src={postImage} alt="postImage" />
+          </div>
+          <h3 className="text-lg font-semibold text-gray-500 mt-2">Be More Happy To  <span className="text-gray-700">Get Back Your Belongins</span></h3>
         </div>
       </div>
       <hr className="w-40 my-14 border-4 rounded-md sm:mx-0 mx-auto" />

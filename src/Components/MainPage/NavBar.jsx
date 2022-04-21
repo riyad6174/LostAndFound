@@ -1,7 +1,26 @@
-import React from "react";
+import React,{useEffect, useState} from "react";
 import {Link} from "react-router-dom";
+import jwtdecode from "jwt-decode"
+
 
 const NavBar = () => {
+
+  const [isLogin, setisLogin] = useState(false)
+  const [data, setData] = useState('')
+  const key =localStorage.getItem("key")
+  useEffect(() => {
+    
+    
+  if(key){
+    setisLogin(true)
+    const {username}=jwtdecode(key)
+    setData(username)
+    
+  }
+
+  }, [key])
+  
+
   return (
     <>
       <nav className="bg-white position: fixed w-full border-gray-700 border-t-4 shadow-lg   px-2 sm:px-4 py-2.5 rounded dark:bg-gray-800">
@@ -99,14 +118,28 @@ const NavBar = () => {
                 </Link>
               
               </li>
-              <li>
-              <Link
-                  to='/login'
-                  className="block py-2 text-base font-normal  pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                >
-                  Login
-                </Link>
-              </li>
+              {isLogin ? 
+                    <li>
+                    <Link 
+                        to='/profile'
+                        className="block py-2 text-base font-normal  pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                      >
+                       <p>Welcome  {data}</p>
+                      </Link>
+                    </li>
+                    :
+                    <li>
+                    <Link
+                        to='/login'
+                        className="block py-2 text-base font-normal  pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                      >
+                        <p>Login</p>
+                      </Link>
+                    </li>
+            }
+          
+            
+              
         
             </ul>
           </div>

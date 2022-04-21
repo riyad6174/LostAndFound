@@ -15,21 +15,22 @@ const Registration = () => {
   }
   const handleOnSubmit=async(e)=>{
     e.preventDefault()
-    console.log(data)
+    
     try {
       // make axios post request
       await axios({
         method: "post",
-        url: "https://lostandfounds.herokuapp.com/api/user",
+        url: " http://localhost:4000/api/user",
         data: data,
         headers: {
           'Content-Type': 'application/json'
           
       }
-      }).then((result)=>{
-        console.log(result.data)
+      }).then((response)=>{
+        console.log(response)
+      
       });
-      console.log("Logged In")
+      console.log("Registered")
       
     } catch(error) {
       console.log(error)

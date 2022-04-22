@@ -4,7 +4,8 @@ import axios from 'axios'
 const AllPost = () => {
     const key =localStorage.getItem("key")
     const [newdata, setNewData] = useState([]);
-    const fetchAllData = () => {
+    const fetchAllData = async() => {
+     
       axios({
         method: "GET",
         url: "http://localhost:4000/api/post",
@@ -14,7 +15,7 @@ const AllPost = () => {
           'key':key
       }
       }).then((response)=>{
-        console.log(response.data)
+        
         setNewData(response.data)
       
       }).catch((err)=>{
@@ -30,10 +31,15 @@ const AllPost = () => {
   return (
     <>
     {newdata.slice(0).reverse().map((value) => {
+      const imagepath=`./img/${value.image}`
+        const {date}=value
+        const nDate=date.split("T")
+        const time=nDate[1].slice(0,8)
         
+       
        return (
     
-<div aria-label="group of cards" tabIndex="0" className="focus:outline-none  py-20 w-full">
+<div key={value._id}  className="focus:outline-none  py-20 w-full">
 
             <div className="lg:flex items-center justify-center w-full">
                 <div  className="focus:outline-none lg:w-6/12 lg:mr-7 lg:mb-0 mb-7 bg-white p-6 shadow rounded">
@@ -41,6 +47,7 @@ const AllPost = () => {
                       
                         <div className="flex items-start justify-between w-full">
                             <div className="pl-3 w-full">
+                              
                                 <p tabIndex="0" className="focus:outline-none text-xl font-medium leading-5 text-gray-800">{value.title}</p>
                                 <p tabIndex="0" className="focus:outline-none text-sm leading-normal pt-2 text-gray-500">{value.type}</p>
                             </div>
@@ -51,11 +58,13 @@ const AllPost = () => {
                             </div>
                         </div>
                     </div>
+                    <img src={imagepath} alt="images" />
                     <div className="px-2">
                         <p tabIndex="0" className="focus:outline-none text-sm leading-5 py-4 text-gray-600">{value.description}</p>
                         <div tabIndex="0" className="focus:outline-none flex">
-                            <div className="py-2 px-4 text-xs leading-3 text-indigo-700 rounded-full bg-indigo-100">Posted By:</div>
-                            <div className="py-2 px-4 ml-3 text-xs leading-3 text-indigo-700 rounded-full bg-indigo-100">time</div>
+                            <div className="py-2 px-4 text-xs leading-3 text-indigo-700 rounded-full bg-indigo-100">Posted By  : {value.user.username}</div>
+                            <div className="py-2 px-4 ml-3 text-xs leading-3 text-indigo-700 rounded-full bg-indigo-100">Posted On : {time}</div>
+                            <div className="py-2 px-4 ml-3 text-xs leading-3 text-indigo-700 rounded-full bg-indigo-100">Contact : {value.contact}</div>
                         </div>
                     </div>
                 </div>

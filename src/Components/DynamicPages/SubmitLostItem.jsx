@@ -1,10 +1,11 @@
 import React,{useState} from 'react'
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 
 const SubmitLostItem = () => {
+  const navigate=useNavigate()
   const [data, setdata] = useState({
     title: "",
-    image: "",
     contact: "",
     location: "",
     description: "",
@@ -12,12 +13,16 @@ const SubmitLostItem = () => {
     
    
   });
+  const [image, setimage] = useState('')
   const handleOnchange=(e)=>{
 const {name,value}=e.target
 
 setdata({...data,[name]:value})
 
   }
+  const handlefile=(e)=>{
+    setimage(e.target.files[0])
+      }
 
 
   const handleOnsubmit = (e) => {
@@ -25,7 +30,7 @@ setdata({...data,[name]:value})
     const key = localStorage.getItem("key");
    
     const Formdata = new FormData();
-    const {title,description,location,contact,image}=data
+    const {title,description,location,contact}=data
 
     Formdata.append("title", title);
     Formdata.append("description",description );
@@ -44,6 +49,7 @@ setdata({...data,[name]:value})
       },
     }).then((response) => {
       console.log(response);
+      navigate('/allpost')
     });
   };
   return (
@@ -65,7 +71,7 @@ setdata({...data,[name]:value})
           <div className="lg:col-span-2">
                   <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
                     <div className="md:col-span-5">
-                      <label for="full_name">Item Name</label>
+                      <label htmlFor="full_name">Item Name</label>
                       <input
                       onChange={handleOnchange}
                         type="text"
@@ -77,7 +83,7 @@ setdata({...data,[name]:value})
                     </div>
 
                     <div className="md:col-span-5">
-                      <label for="email">
+                      <label htmlFor="email">
                         A Little Description will be Helpful:
                       </label>
                       <input
@@ -91,7 +97,7 @@ setdata({...data,[name]:value})
                     </div>
 
                     <div className="md:col-span-3">
-                      <label for="address">possible Location?</label>
+                      <label htmlFor="address">possible Location?</label>
                       <input
                         type="text"
                         name="location"
@@ -103,7 +109,7 @@ setdata({...data,[name]:value})
                     </div>
 
                     <div className="md:col-span-2">
-                      <label for="city">Contact Details</label>
+                      <label htmlFor="city">Contact Details</label>
                       <input
                         type="text"
                         name="contact"
@@ -118,7 +124,7 @@ setdata({...data,[name]:value})
                       <label>Image</label>
                       <div className="h-10 bg-gray-50 flex border border-gray-200 rounded items-center mt-1">
                         <input
-                         onChange={handleOnchange}
+                         onChange={handlefile}
                           name="image"
                          type='file'
                           placeholder="Image"

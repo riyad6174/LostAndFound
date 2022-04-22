@@ -1,5 +1,6 @@
 import React,{useState} from 'react'
 import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import {Link,useNavigate} from "react-router-dom";
 import axios from 'axios';
 const Login = () => {
@@ -17,6 +18,7 @@ console.log(name,value)
 
  const handleOnClick=async(e)=>{
    e.preventDefault()
+   toast("loggedIn")
    
    try {
     // make axios post request
@@ -30,7 +32,8 @@ console.log(name,value)
     }
     }).then((result)=>{
       console.log(result.data)
-      toast("loggedIn")
+    
+     
   
       if(result.data.key){
         localStorage.setItem("key",result.data.key)

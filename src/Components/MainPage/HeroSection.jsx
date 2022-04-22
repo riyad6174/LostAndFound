@@ -8,19 +8,19 @@ const HeroSectio = () => {
     <>
     <main className="py-16 container mx-auto px-6 md:px-0">
     <section>
-      <h1 className="text-3xl font-bold text-gray-600 mb-10">Some more feature will be announce here</h1>
+      <h1 className="text-3xl font-bold text-gray-600 mb-10">How This Website Can Help You?</h1>
       <div className="grid sm:grid-cols-3 gap-4 grid-cols-2">
         <div>
           <div className="bg-gray-300 h-44 overflow-hidden" >
             <img src={lostImage} alt="lostImage" />
           </div>
-          <h3 className="text-lg font-semibold text-gray-500 mt-2">lallala <span className="text-gray-700">Helsinki</span></h3>
+          <h3 className="text-lg font-semibold text-gray-500 mt-2">Reach More People. <span className="text-gray-700">Its Better than a Poster</span></h3>
         </div>
         <div>
           <div className="bg-gray-300 h-44 overflow-hidden" >
           <img src={foundImage} alt="foundImage" />
           </div>
-          <h3 className="text-lg font-semibold text-gray-500 mt-2">lelele<span className="text-gray-700">Rovaniemi</span></h3>
+          <h3 className="text-lg font-semibold text-gray-500 mt-2">Found Something ? <span className="text-gray-700"> Want To Give It Back?</span></h3>
         </div>
         <div>
           <div className="bg-gray-300 h-44 overflow-hidden">
@@ -33,7 +33,7 @@ const HeroSectio = () => {
     </section>
     <section>
       <h1 className="inline-block text-gray-600 font-bold text-3xl">
-       How This Website Can Help You?
+       How To Use This  Website ?
       </h1>
 
       <div className="grid grid-cols-3 gap-4 mt-10">

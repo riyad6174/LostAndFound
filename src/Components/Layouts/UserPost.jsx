@@ -8,23 +8,23 @@ const UserPost = () => {
    <>
    
  
-<div class="flex h-screen ">
-  <div class="flex-1 flex flex-col overflow-hidden">
-    <header class="flex justify-between items-center bg-blue-300 p-4">
+<div className="flex h-screen ">
+  <div className="flex-1 flex flex-col overflow-hidden">
+    <header className="flex justify-between items-center bg-blue-300 p-4">
       
       
     </header>
-    <div class="flex h-full">
-      <nav class="flex w-72 h-full ">
-        <div class="w-full flex mx-auto  py-8">
+    <div className="flex h-full">
+      <nav className="flex w-72 h-full ">
+        <div className="w-full flex mx-auto  py-8">
          
             <Profile />
           
         </div>
       </nav>
-      <main class="flex flex-col w-full bg-white overflow-x-hidden overflow-y-auto mb-14">
+      <main className="flex flex-col w-full bg-white overflow-x-hidden overflow-y-auto mb-14">
      
-        <div class="flex flex-col w-full mx-auto px-6 py-8">
+        <div className="flex flex-col w-full mx-auto px-6 py-8">
         <UserPostCard />
      
         </div>

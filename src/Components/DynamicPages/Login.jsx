@@ -18,7 +18,7 @@ console.log(name,value)
 
  const handleOnClick=async(e)=>{
    e.preventDefault()
-   toast("loggedIn")
+   
    
    try {
     // make axios post request
@@ -105,7 +105,17 @@ console.log(name,value)
   </section>
   </form>
 </main>
-<ToastContainer />
+<ToastContainer
+position="top-center"
+autoClose={3000}
+hideProgressBar={false}
+newestOnTop={false}
+closeOnClick
+rtl={false}
+pauseOnFocusLoss
+draggable
+pauseOnHover
+/>
     </>
   )
 }

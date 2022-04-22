@@ -42,6 +42,7 @@ const UserPostCard = () => {
   };
   useEffect(() => {
     fetchAllData();
+    // eslint-disable-next-line
   }, []);
 
   return (

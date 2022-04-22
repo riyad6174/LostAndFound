@@ -24,6 +24,7 @@ const AllPost = () => {
     }
       useEffect(() => {
         fetchAllData();
+        // eslint-disable-next-line
       }, []);
     
 
